@@ -1,17 +1,17 @@
 # sbt-jol
 
-[ ![Download](https://api.bintray.com/packages/ktosopl/sbt-plugins/sbt-jol/images/download.svg) ](https://bintray.com/ktosopl/sbt-plugins/sbt-jol/_latestVersion)
-
-Trivial way to inspect OpenJDK's [*Java Object Layout*](http://openjdk.java.net/projects/code-tools/jol/) of your Scala classes.
+Use OpenJDK's [*Java Object Layout*](https://github.com/openjdk/jol) within your SBT project and determine object sizes.
 
 Get the latest via:
 
  ```
  // project/plugins.sbt
- addSbtPlugin("pl.project13.sbt" % "sbt-jol" % pluginVersionHere)
+ addSbtPlugin("com.github.fernandoracca" % "sbt-jol" % pluginVersionHere)
  ```
  
- Which allows you to (note auto-completion works nicely):
+ Which allows you to inspect classes within SBT 
+
+[!TIP] Auto-completion works nicely
  
  ```
  > jol:internals example.Entry
@@ -37,15 +37,38 @@ Get the latest via:
 [info] Instance size: 24 bytes
 [info] Space losses: 0 bytes internal + 4 bytes external = 4 bytes total
  ```
- 
-  Currently uses jol `0.5`.
+
+  Currently uses jol `0.17`
+
+
+
 
 Contribute!
 -----------
-Please note that this plugin is mostly developed on a "on demand" basis by and for myself, contributions are very (!) welcome 
-since I most likely will not focus much on it unless I need more features (and for now estimates and internal are all I needed).
+
+Original Plugin was written by [Konrad "ktoso" Malawski](https://github.com/ktoso/sbt-jol), to whom credit should go towards. 
+I've decided to fork and lightly maintain this since it's a useful tool. Contributions welcomed, however, it's not a high priority project!
+
+
+The example above runs as follows. 
+
+First, build the plugin, run
+
+```
+> scripted
+```
+
+Then, 
+
+```
+cd sbt-jol/src/sbt-test/sbt-jol/estimates
+sbt -Dproject.version=0.3.0-SNAPSHOT
+```
+
+
+
+
+License
+-------
  
- License
- -------
- 
- Apache v2
+Apache v2

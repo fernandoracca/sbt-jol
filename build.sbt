@@ -1,11 +1,14 @@
 import sbt.Keys.{libraryDependencies, licenses, name}
 
+ThisBuild / organization := "com.github.fernandoracca"
+
+ThisBuild / scalaVersion := "2.12.20"
+
 val myScriptedSettings = Seq(
   scriptedLaunchOpts += s"-Dproject.version=${version.value}"
   )
 
 val defaultSettings = Seq(
-  organization := "pl.project13.sbt",
   scalacOptions ++= List(
     "-unchecked",
     "-deprecation",
@@ -15,8 +18,8 @@ val defaultSettings = Seq(
 
   publishConfiguration := {
     val javaVersion = System.getProperty("java.specification.version")
-    if (javaVersion != "1.8")
-      throw new RuntimeException("Cancelling publish, please use JDK 1.8")
+    if (scala.util.Try { "1.7".toDouble }.toOption.exists( _ <= 1.8) )
+      throw new RuntimeException("Cancelling publish, please a more recent JDK than 1.8")
     publishConfiguration.value
   },
 
@@ -32,7 +35,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "sbt-jol",
     sbtPlugin := true,
-    scalaVersion := "2.12.10",
+    scalaVersion := "2.12.20",
     scalacOptions ++= List(
       "-unchecked",
       "-deprecation",
@@ -42,7 +45,6 @@ lazy val root = (project in file("."))
       ),
     publishMavenStyle := false,
     licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html")),
-    bintrayRepository := "sbt-plugins",
-    bintrayOrganization in bintray := None,
-    bintrayPackageLabels := Seq("sbt-multi-release-jar")
    )
+
+   //jvmPlatform(scalaVersions = Seq("2.13.14", "2.12.20"))
