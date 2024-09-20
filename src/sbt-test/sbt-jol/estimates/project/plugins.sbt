@@ -1,1 +1,1 @@
-addSbtPlugin("pl.project13.sbt" % "sbt-jol" % sys.props("project.version"))
+addSbtPlugin("com.github.fernandoracca" % "sbt-jol" % sys.props("project.version"))

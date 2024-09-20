@@ -1,4 +1,4 @@
-package pl.project13.sbt.jol
+package com.github.fernandoracca.sbt.jol
 
 import org.openjdk.jol.vm.VM
 import sbt.Def.Initialize
